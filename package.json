@@ -1,11 +1,12 @@
 {
-  "name": "rollup-starter-lib",
+  "name": "@johnrob1880/conversions",
   "version": "1.0.0",
-  "main": "dist/how-long-till-lunch.cjs.js",
-  "module": "dist/how-long-till-lunch.esm.js",
-  "browser": "dist/how-long-till-lunch.umd.js",
+  "main": "dist/convert.cjs.js",
+  "module": "dist/convert.esm.js",
+  "browser": "dist/convert.umd.js",
   "dependencies": {
-    "ms": "^2.0.0"
+    "mkdirp": "^0.5.1",
+    "uglify-js": "^3.4.6"
   },
   "devDependencies": {
     "rollup": "^0.63.4",

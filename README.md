@@ -1,43 +1,134 @@
-# rollup-starter-lib
+# @johnrob1880/conversions
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/rollup/rollup-starter-lib.svg)](https://greenkeeper.io/)
+Utility to ease the pain of converting values from one unit to another. Heavily inspired by [ben-ng/convert-units](https://github.com/ben-ng/convert-units).
 
-This repo contains a bare-bones example of how to create a library using Rollup, including importing a module from `node_modules` and converting it from CommonJS.
+## Install
 
-We're creating a library called `how-long-till-lunch`, which usefully tells us how long we have to wait until lunch, using the [ms](https://github.com/zeit/ms) package:
-
-```js
-console.log('it will be lunchtime in ' + howLongTillLunch());
-```
-
-## Getting started
-
-Clone this repository and install its dependencies:
+Install the conversion library via npm:
 
 ```bash
-git clone https://github.com/rollup/rollup-starter-lib
-cd rollup-starter-lib
-npm install
+npm install @johnrob1880/conversions --save
+```
+or with yarn
+```bash
+yarn add @johnrob1880/conversions
 ```
 
-`npm run build` builds the library to `dist`, generating three files:
+## Example
 
-* `dist/how-long-till-lunch.cjs.js`
-    A CommonJS bundle, suitable for use in Node.js, that `require`s the external dependency. This corresponds to the `"main"` field in package.json
-* `dist/how-long-till-lunch.esm.js`
-    an ES module bundle, suitable for use in other people's libraries and applications, that `import`s the external dependency. This corresponds to the `"module"` field in package.json
-* `dist/how-long-till-lunch.umd.js`
-    a UMD build, suitable for use in any environment (including the browser, as a `<script>` tag), that includes the external dependency. This corresponds to the `"browser"` field in package.json
+```js
+import convert from '@johnrob1880/conversions'
+// import conversion systems as needed
+import length from '@johnrob1880/conversions/definitions/length'
+import volume from '@johnrob1880/conversions/definitions/volume'
 
-`npm run dev` builds the library, then keeps rebuilding it whenever the source files change using [rollup-watch](https://github.com/rollup/rollup-watch).
 
-`npm test` builds the library, then tests it.
+let converter = convert().use(volume, length/*, .... */)
 
-## Variations
+// length
+console.log(converter.value(1).from('m').to('cm')) // outputs 100
 
-* [babel](https://github.com/rollup/rollup-starter-lib/tree/babel) — illustrates writing the source code in ES2015 and transpiling it for older environments with [Babel](https://babeljs.io/)
-* [buble](https://github.com/rollup/rollup-starter-lib/tree/buble) — similar, but using [Bublé](https://buble.surge.sh/) which is a faster alternative with less configuration
+// volume
+console.log(converter.value(1).from('gal').to('l', 4 /* optional precision */)) // outputs 3.7854
+```
 
+## Available definitions
+
+```js
+// g-force, m/s2
+import acceleration from '@johnrob1880/conversions/definitions/acceleration'
+
+// rad, deg, grad, arcmin, arcsec
+import angle from '@johnrob1880/conversions/definitions/angle'
+
+// VA, mVA, kVA, MVA, GVA
+import appearentPower from '@johnrob1880/conversions/definitions/appearentPower'
+
+// metric   ---> mm2, cm2, m2, ha, km2
+// imperial ---> in2, yd2, ft2, ac, mi2
+import area from '@johnrob1880/conversions/definitions/area'
+
+// c, mC, μC, nC, pC
+import charge from '@johnrob1880/conversions/definitions/charge'
+
+// A, mA, kA
+import current from '@johnrob1880/conversions/definitions/current'
+
+// bits  ---> b, Kb, Mb, Gb, Tb,
+// bytes ---> B, KB, MB, GB, TB, 
+import digital from '@johnrob1880/conversions/definitions/digital'
+
+// ea, dz
+import each from '@johnrob1880/conversions/definitions/each'
+
+// Wh, mWh, kWh, MWh, GWh, J, kJ
+import energy from '@johnrob1880/conversions/definitions/energy'
+
+// N, kN, lbf
+import force from '@johnrob1880/conversions/definitions/force'
+
+// mHz, Hz, kHz, MHz, GHz, THz, rpm, deg/s, rad/s
+import frequency from '@johnrob1880/conversions/definitions/frequency'
+
+// metric   ---> lx
+// imperial ---> ft-cd
+import illuminance from '@johnrob1880/conversions/definitions/illuminance'
+
+// metric   ---> mm, cm, m, km
+// imperial ---> in, yd, ft-us, ft, fathom, mi, nMi
+import length from '@johnrob1880/conversions/definitions/length'
+
+// metric   ---> mcg, mg, g, kg, mt
+// imperial ---> oz, lb, t
+import mass from '@johnrob1880/conversions/definitions/mass'
+
+// metric   ---> min/km, s/m
+// imperial ---> min/mi, s/ft
+import pace from '@johnrob1880/conversions/definitions/pace'
+
+// ppm, ppb, ppt, ppq
+import partsPer from '@johnrob1880/conversions/definitions/partsPer'
+
+// W, mW, kW, MW, GW
+import power from '@johnrob1880/conversions/definitions/power'
+
+// metric   ---> Pa, kPa, MPa, hPa, bar, torr
+// imperial ---> psi, ksi
+import pressure from '@johnrob1880/conversions/definitions/pressure'
+
+// VARh, mVARh, kVARh, MVARh, GVARh
+import reactiveEnergy from '@johnrob1880/conversions/definitions/reactiveEnergy'
+
+// VAR, mVAR, kVAR, MVAR, GVAR
+import reactivePower from '@johnrob1880/conversions/definitions/reactivePower'
+
+// metric   ---> m/s, km/h
+// imperial ---> m/h, knot, ft/s
+import speed from '@johnrob1880/conversions/definitions/speed'
+
+// metric   ---> C, K
+// imperial ---> F, R
+import temperature from '@johnrob1880/conversions/definitions/temperature'
+
+// ns, mu, ms, s, min, h, d, week, month, year
+import time from '@johnrob1880/conversions/definitions/time'
+
+// V, mV, kV
+import voltage from '@johnrob1880/conversions/definitions/voltage'
+
+// metric   ---> mm3, cm3, ml, cl, dl, l, kl, m3, km3
+// imperial ---> tsp, Tbs, in3, fl-oz, cup, pnt, qt, gal, ft3, yd3
+// swedish ---> krm, tsk, msk, kkp, glas, kanna
+import volume from '@johnrob1880/conversions/definitions/volume'
+
+// metric   ---> mm3/s, cm3/s, ml/s, cl/s, dl/s, l/s, l/min, l/h, kl/s
+//               kl/min, kl/h, m3/s, m3/min, m3/h, km3/s
+// imperial ---> tsp/s, Tbs/s, in3/s, in3/min, in3/h, fl-oz/s, fl-oz/min
+//               fl-oz/h, cup/s, pnt/s, pnt/min, pnt/h, qt/s
+//               gal/s, gal/min, gal/h, ft3/s, ft3/min, ft3/h
+//               yd3/s, yd3/min, yd3/h
+import volumeFlowRate from '@johnrob1880/conversions/definitions/volumeFlowRate'
+```
 
 
 ## License
