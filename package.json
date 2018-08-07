@@ -1,6 +1,6 @@
 {
   "name": "@johnrob1880/conversions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/convert.cjs.js",
   "module": "dist/convert.esm.js",
   "browser": "dist/convert.umd.js",
@@ -20,6 +20,7 @@
     "pretest": "npm run build"
   },
   "files": [
-    "dist"
+    "dist",
+    "definitions"
   ]
 }

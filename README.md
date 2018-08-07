@@ -9,7 +9,8 @@ Install the conversion library via npm:
 ```bash
 npm install @johnrob1880/conversions --save
 ```
-or with yarn
+Install the conversion library via yarn:
+
 ```bash
 yarn add @johnrob1880/conversions
 ```
@@ -42,7 +43,7 @@ import acceleration from '@johnrob1880/conversions/definitions/acceleration'
 import angle from '@johnrob1880/conversions/definitions/angle'
 
 // VA, mVA, kVA, MVA, GVA
-import appearentPower from '@johnrob1880/conversions/definitions/appearentPower'
+import apparentPower from '@johnrob1880/conversions/definitions/apparentPower'
 
 // metric   ---> mm2, cm2, m2, ha, km2
 // imperial ---> in2, yd2, ft2, ac, mi2

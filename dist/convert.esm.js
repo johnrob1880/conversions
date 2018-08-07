@@ -126,7 +126,7 @@ class Converter {
 		var found;
 		each(this.measures, (systems, measure) => {
 			each(systems, (units, system) => {
-				if (system == '_anchors')
+				if (system == '_anchors' || system == "system")
 					return false
 				each(units, (unit, testAbbr) => {
 					if (testAbbr == abbr) {
@@ -165,7 +165,7 @@ class Converter {
 
 		each(this.measures, (systems, measure) => {
 			each(systems, (units, system) => {
-				if (system == '_anchors')
+				if (system == '_anchors' || system == 'system')
 					return false
 				validUnits = validUnits.concat(keys(units));
 			});
@@ -180,7 +180,7 @@ class Converter {
 				return;
 
 			each(systems, (units, system) => {
-				if (system == '_anchors')
+				if (system == '_anchors' || system == 'system')
 					return false;
 
 				each(units, (unit, abbr) => {
@@ -201,7 +201,7 @@ class Converter {
 		if (!this.origin && !measure) {
 			each(keys(this.measures), (measure) => {
 				each(this.measures[measure], (units, system) => {
-					if (system == '_anchors')
+					if (system == '_anchors' || system == 'system')
 						return false;
 
 					possibilities = possibilities.concat(keys(units));
@@ -210,7 +210,7 @@ class Converter {
 		} else {
 			measure = measure || this.origin.measure;
 			each(this.measures[measure], (units, system) => {
-				if (system == '_anchors')
+				if (system == '_anchors' || system == 'system')
 					return false;
 
 				possibilities = possibilities.concat(keys(units));

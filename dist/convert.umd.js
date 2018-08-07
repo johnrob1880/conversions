@@ -132,7 +132,7 @@
     		var found;
     		each(this.measures, (systems, measure) => {
     			each(systems, (units, system) => {
-    				if (system == '_anchors')
+    				if (system == '_anchors' || system == "system")
     					return false
     				each(units, (unit, testAbbr) => {
     					if (testAbbr == abbr) {
@@ -171,7 +171,7 @@
 
     		each(this.measures, (systems, measure) => {
     			each(systems, (units, system) => {
-    				if (system == '_anchors')
+    				if (system == '_anchors' || system == 'system')
     					return false
     				validUnits = validUnits.concat(keys(units));
     			});
@@ -186,7 +186,7 @@
     				return;
 
     			each(systems, (units, system) => {
-    				if (system == '_anchors')
+    				if (system == '_anchors' || system == 'system')
     					return false;
 
     				each(units, (unit, abbr) => {
@@ -207,7 +207,7 @@
     		if (!this.origin && !measure) {
     			each(keys(this.measures), (measure) => {
     				each(this.measures[measure], (units, system) => {
-    					if (system == '_anchors')
+    					if (system == '_anchors' || system == 'system')
     						return false;
 
     					possibilities = possibilities.concat(keys(units));
@@ -216,7 +216,7 @@
     		} else {
     			measure = measure || this.origin.measure;
     			each(this.measures[measure], (units, system) => {
-    				if (system == '_anchors')
+    				if (system == '_anchors' || system == 'system')
     					return false;
 
     				possibilities = possibilities.concat(keys(units));
