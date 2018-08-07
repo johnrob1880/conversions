@@ -4,14 +4,14 @@
   "main": "dist/convert.cjs.js",
   "module": "dist/convert.esm.js",
   "browser": "dist/convert.umd.js",
-  "dependencies": {
-    "mkdirp": "^0.5.1",
-    "uglify-js": "^3.4.6"
+  "dependencies": {    
   },
   "devDependencies": {
     "rollup": "^0.63.4",
     "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "mkdirp": "^0.5.1",
+    "uglify-js": "^3.4.6"
   },
   "scripts": {
     "build": "rollup -c",
